@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peta Persebaran Bencana Cianjur</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
+  <script type="module" src="https://js.arcgis.com/embeddable-components/4.31/arcgis-embeddable-components.esm.js"></script>
+</head>
+<body>
+  <header>
+    <div class="jumbotron">
+      <h1>BPBD Cianjur</h1>
+      <h3>Peta Persebaran Bencana Gempa Cianjur</h3>
+    </div>
+  </header>
+  <main>
+    <div id="content">
+      <article id="deskripsi", class="card">
+        <h2>Deskripsi</h2>
+        <p>Gempa bumi merupakan peristiwa bergetarnya bumi akibat pelepasan energi di dalam bumi secara tiba-tiba yang ditandai dengan patahnya lapisan batuan pada kerak bumi. Energi yang dihasilkan dipancarkan ke segala arah berupa gelombang gempa bumi sehingga efeknya dapat dirasakan sampai ke permukaan bumi. Kekuatan gempa bumi diukur menggunakan satuan magnitudo, yang menggambarkan besarnya energi yang dilepaskan, sementara intensitas gempa menggambarkan tingkat kerusakan yang diakibatkan.</p>
+        <p>
+        Maka dari itu peta interaktif ini menyajikan visualisasi persebaran gempa bumi yang pernah terjadi di Cianjur menggunakan data historis . Diintegrasikan dengan platform ArcGIS, website ini memberikan kemudahan bagi pengguna untuk mengeksplorasi dan menganalisis daerah rawan gempa secara komprehensif.
+        </p>
+      </article>
+
+      <article id="map" class="card">
+        <h2>Peta</h2>
+        <div class="select-wrapper">
+          <div class="select-group">
+            <label class="select-label" for="map-type-main">Pilih Jenis Peta:</label>
+            <select id="map-type-main" class="custom-select" onchange="toggleMainMap()">
+              <optgroup label="ArcGIS">
+                <option value="arcgis-point">Point Map</option>
+                <option value="arcgis-heat">Heatmap</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Div untuk peta ArcGIS -->
+        <div id="arcgis-map" style="height: 600px; width: 100%; margin: 20px 0;">
+          <!-- Container untuk peta -->
+        </div>
+      </article>
+      
+      <script>
+        let currentMap = null;
+      
+        function createArcGISMap(itemId) {
+          const mapElement = document.createElement('arcgis-embedded-map');
+          mapElement.style.height = '600px';
+          mapElement.style.width = '100%';
+          mapElement.id = 'arcgis-embedded-map';
+          mapElement.setAttribute('item-id', itemId);
+          mapElement.setAttribute('theme', 'light');
+          mapElement.setAttribute('portal-url', 'https://ug-gis.maps.arcgis.com');
+          mapElement.setAttribute('bookmarks-enabled', '');
+          mapElement.setAttribute('heading-enabled', '');
+          mapElement.setAttribute('legend-enabled', '');
+          mapElement.setAttribute('information-enabled', '');
+          mapElement.setAttribute('share-enabled', '');
+          return mapElement;
+        }
+      
+        function toggleMainMap() {
+          const mapTypeMain = document.getElementById("map-type-main").value;
+          const arcgisMap = document.getElementById("arcgis-map");
+          
+          // Hapus peta yang ada jika ada
+          if (currentMap) {
+            currentMap.remove();
+          }
+      
+          let itemId;
+          if (mapTypeMain === "arcgis-point") {
+            itemId = "ec8d30f5a07d45a58286d64e365f0fb8";
+          } else if (mapTypeMain === "arcgis-heat") {
+            itemId = "4662011ea30a4d3680d6bec5ac4b1232";
+          }
+      
+          // Buat dan tambahkan peta baru
+          const newMap = createArcGISMap(itemId);
+          arcgisMap.appendChild(newMap);
+          currentMap = newMap;
+        }
+      
+        // Inisialisasi peta saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+          toggleMainMap();
+        });
+      </script>
+      </article>
+
+      <article id="kontak", class="card">
+        <h2>Informasi Kontak</h2>
+        <h4>Hubungi</h4>
+        <table class="contact-table">
+          <tr>
+              <th>Call Center</th>
+              <td>:</td>
+              <td>+62 811-2220-5252</td>
+          </tr>
+          <tr>
+              <th>Alamat</th>
+              <td>:</td>
+              <td>Jl. Lika, Sawah Gede, Kec. Cianjur, Kabupaten Cianjur, Jawa Barat 43212</td>
+          </tr>
+      </table>
+      </article>
+    </div>
+  </main>
+  <footer>
+    <p>Universitas Gunadarma &#169; 2024, BPBD Kabupaten Cianjur</p>
+  </footer>
+</body>
+</html>
