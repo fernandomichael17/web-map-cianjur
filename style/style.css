@@ -16,41 +16,6 @@ footer {
   font-weight: bold;
 }
 
-nav {
-  background-color: white;
-  padding: 5px;
-  position: sticky;
-  top: 0;
-}
-
-nav li a{
-  font-size: 19px;
-  font-weight: 500;
-  text-decoration: none;
-  color: black;
-  padding: 0.5rem 1.5rem;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-}
-
-
-nav li:hover a{
-  background-color: black;
-  color: white;
-}
-
-nav ul {
-  padding-inline: 4rem;
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-}
-
-nav li {
-  list-style-type: none;
-}
-
 header {
   display: inline;
 }
@@ -203,4 +168,22 @@ main {
 /* Menyesuaikan padding untuk optgroup */
 .custom-select {
   padding: 10px 35px 10px 15px;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .jumbotron {
+    font-size: 16px;
+  }
+}
+
+/* Ensure Viewport Scaling */
+@media screen and (max-width: 768px) {
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
