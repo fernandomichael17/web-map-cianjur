@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Peta Persebaran Bencana Cianjur</title>
   <link rel="stylesheet" href="style/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,21 +12,54 @@
   <script type="module" src="https://js.arcgis.com/embeddable-components/4.31/arcgis-embeddable-components.esm.js"></script>
 </head>
 <body>
+  <div class="top-header">
+    <div class="top-header-content">
+      <div class="datetime-left">
+        <span id="current-date"></span>
+      </div>
+      <div class="datetime-right">
+        <span id="timezone"></span>
+        <div class="time-container">
+          <div class="time-group">
+            <span id="current-time"></span>
+            <span class="time-label">WIB</span>
+          </div>
+          <div class="time-separator">/</div>
+          <div class="time-group">
+            <span id="utc-time"></span>
+            <span class="time-label">UTC</span>
+          </div>
+        </div>
+        <div class="top-logo-container">
+          <img src="image/logo_Universitas-Gunadarma.png" alt="Logo Universitas Gunadarma">
+          <img src="image/logo_MBKM.png" alt="Logo MBKM">
+          <img src="image/logo_BPBD.png" alt="Logo BPBD">
+        </div>
+      </div>
+    </div>
+  </div>
   <header>
     <div class="jumbotron">
-      <h1>BPBD Cianjur</h1>
-      <h3>Peta Persebaran Bencana Gempa Cianjur</h3>
+      <div class="header-left">
+        <img src="image/logo_BPBD_Cianjur.png" alt="Logo BPBD Cianjur" class="header-logo">
+        <div class="header-text">
+          <h1>BPBD CIANJUR</h1>
+          <h3>PETA PERSEBARAN BENCANA GEMPA CIANJUR</h3>
+        </div>
+      </div>
     </div>
   </header>
   <main>
     <div id="content">
-      <article id="deskripsi", class="card">
+      <article id="deskripsi" class="card">
         <h2>Deskripsi</h2>
-        <p>Gempa bumi merupakan peristiwa bergetarnya bumi akibat pelepasan energi di dalam bumi secara tiba-tiba yang ditandai dengan patahnya lapisan batuan pada kerak bumi. Energi yang dihasilkan dipancarkan ke segala arah berupa gelombang gempa bumi sehingga efeknya dapat dirasakan sampai ke permukaan bumi. Kekuatan gempa bumi diukur menggunakan satuan magnitudo, yang menggambarkan besarnya energi yang dilepaskan, sementara intensitas gempa menggambarkan tingkat kerusakan yang diakibatkan.</p>
         <p>
-        Maka dari itu peta interaktif ini menyajikan visualisasi persebaran gempa bumi yang pernah terjadi di Cianjur menggunakan data historis . Diintegrasikan dengan platform ArcGIS, website ini memberikan kemudahan bagi pengguna untuk mengeksplorasi dan menganalisis daerah rawan gempa secara komprehensif.
+          Gempa bumi merupakan salah satu fenomena alam yang terjadi akibat pelepasan energi yang sangat besar dari dalam bumi secara tiba-tiba. Peristiwa ini ditandai dengan patahnya lapisan batuan di kerak bumi yang memicu gelombang seismik yang merambat ke segala arah. Gelombang ini sering kali dapat dirasakan di permukaan bumi dan dapat menimbulkan dampak yang signifikan, baik berupa kerusakan fisik pada bangunan maupun perubahan lanskap alam. Kekuatan gempa bumi diukur menggunakan satuan magnitudo, yang menggambarkan seberapa besar energi yang dilepaskan dari pusat gempa. Di sisi lain, intensitas gempa bumi menggambarkan dampaknya di suatu wilayah, meliputi tingkat kerusakan dan pengaruhnya terhadap aktivitas manusia.
         </p>
-      </article>
+        <p>
+          Indonesia, sebagai salah satu negara yang terletak di jalur cincin api Pasifik (Ring of Fire), sering mengalami gempa bumi dengan berbagai tingkat keparahan. Kabupaten Cianjur, Jawa Barat, adalah salah satu daerah yang rawan gempa bumi akibat letak geografisnya yang berada dekat dengan sesar aktif. Dengan demikian, pemahaman yang baik mengenai persebaran dan potensi gempa di wilayah ini menjadi sangat penting, baik untuk mitigasi bencana maupun untuk meningkatkan kesadaran masyarakat dalam menghadapi ancaman gempa bumi.
+        </p>
+      </article>      
 
       <article id="map" class="card">
         <h2>Peta</h2>
@@ -80,7 +113,7 @@
           if (mapTypeMain === "arcgis-point") {
             itemId = "995b39b618c547edb3c1f5666cec84ee";
           } else if (mapTypeMain === "arcgis-heat") {
-            itemId = "4662011ea30a4d3680d6bec5ac4b1232";
+            itemId = "995b39b618c547edb3c1f5666cec84ee";
           }
       
           // Buat dan tambahkan peta baru
@@ -117,5 +150,6 @@
   <footer>
     <p>Universitas Gunadarma &#169; 2024, BPBD Kabupaten Cianjur</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
