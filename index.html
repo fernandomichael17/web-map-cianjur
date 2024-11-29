@@ -68,8 +68,9 @@
             <label class="select-label" for="map-type-main">Pilih Jenis Peta:</label>
             <select id="map-type-main" class="custom-select" onchange="toggleMainMap()">
               <optgroup label="ArcGIS">
-                <option value="arcgis-point">Point Map</option>
-                <option value="arcgis-heat">Heatmap</option>
+                <option value="arcgis-point">Point-Map</option>
+                <option value="arcgis-heat">Heat-Map</option>
+                <option value="arcgis-shape-cianjur">Dataran Area Cianjur</option>
               </optgroup>
             </select>
           </div>
@@ -96,6 +97,14 @@
           mapElement.setAttribute('legend-enabled', '');
           mapElement.setAttribute('information-enabled', '');
           mapElement.setAttribute('share-enabled', '');
+          
+          const mapContainer = document.getElementById('arcgis-map');
+          mapContainer.addEventListener('wheel', function(e) {
+            if (mapContainer.contains(e.target)) {
+              e.preventDefault();
+            }
+          }, { passive: false });
+          
           return mapElement;
         }
       
@@ -110,9 +119,11 @@
       
           let itemId;
           if (mapTypeMain === "arcgis-point") {
-            itemId = "995b39b618c547edb3c1f5666cec84ee";
+            itemId = "c577d4789a1345d69dc2727d82de0787";
           } else if (mapTypeMain === "arcgis-heat") {
             itemId = "0c4e57a848cb4bf8a791bbdaec4b9537";
+          } else if (mapTypeMain === "arcgis-shape-cianjur") {
+            itemId = "df542cd0f0004eeb971614e57411bbf3";
           }
       
           // Buat dan tambahkan peta baru
